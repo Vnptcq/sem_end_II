@@ -3,8 +3,8 @@ import logo from "../assets/images/all-img/logo.png";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 const Guestlayout = () => {
-  const user = useSelector((state)=>state.auth.login.currentUser);
-  const role = useSelector((state)=>state.user.profile.role.roleName);
+  const user = useSelector((state)=>state.auth.login.token);
+  // const role = useSelector((state)=>state.user.profile.role.roleName);
   return (
     <>
       <div
@@ -128,29 +128,22 @@ const Guestlayout = () => {
               <div className="call_to_action">
                 {user ? (
                   <>
-                    {/* <div id="main-menu" className="ms-auto">
+                    <div className="call_to_action">
+                    <div id="main-menu" style={{display:'inline-block'}}>
                       <ul>
                         <li>
-                          <Link to="userInfo" className="nav-link">
+                          <Link to="userInfo" className="btn_two" style={{padding:'9px 30px'}}>
                             <i className="fa-solid fa-user"></i>
                           </Link>
                           <ul>
-                            <li>hi {user}</li>
-                            <li>
-                              <a className="nav-link" href="team-details.html">
-                                Instructor Details
+                            <li><a className="nav-link" href="team-details.html">
+                                Your Information
                               </a>
                             </li>
                           </ul>
                         </li>
                       </ul>
-                    </div> */}
-
-                    <div className="call_to_action">
-                      <Link to="logout" className="btn_two">
-                        <i className="fa-solid fa-user"></i>
-                      </Link>
-
+                    </div>
                       <Link to="logout" className="btn_two" href="register.html">Log out</Link>
                     </div>
                   </>

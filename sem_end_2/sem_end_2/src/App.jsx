@@ -41,13 +41,21 @@ function App() {
           <Route path="single_event" element={<SingleEvent />} />
           <Route path="blog" element={<Blog />} />
           <Route path="single_blog" element={<SingleBlog />} />
-          <Route path="*" element={<Error404 />} />
+          
         </Route>
 
-        <Route path="/user" element={<Userlayout />}>
-          <Route index element={<Home />} />
+        <Route path="/user" element={<Guestlayout />}>
+          <Route path="info" index element={<Home />} />
           <Route path="image" element={<Image />} />
         </Route>
+
+        <Route path="/admin" element={<Guestlayout/>}>
+          <Route path="dashboard" index />
+        </Route>
+        <Route path="/teacher" element={<Guestlayout/>}>
+          <Route path="dashboard" index />
+        </Route>
+        <Route path="*" element={<Error404/>} />
       </Routes>
     </Router>
   );

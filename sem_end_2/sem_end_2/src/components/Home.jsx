@@ -31,7 +31,7 @@ import ba from "../assets/images/blog/3.png";
 import { getUser } from "../redux/apiRequest";
 const Home = () => {
   const dispatch = useDispatch();
-    const TOKEN = useSelector((state)=>state.auth.login.currentUser); // Get the token
+    const TOKEN = useSelector((state)=>state.auth.login.token); // Get the token
 
     const fetchUser = () => {
         if (TOKEN) {
