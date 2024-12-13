@@ -62,9 +62,7 @@ const Home = () => {
                 <div className="col-lg-6 col-sm-6 col-xs-12">
                   <div className="home_content">
                     <h1>
-                      Welcome
-                      <br />
-                      <span >{user.username}</span>
+                      Welcome <br />{user.role.roleName}<span style={{textTransform:'uppercase'}}> {user.username}</span>
                     </h1>
                     <p>
                       There are no limits for those who keep striving to learn.

@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 const Guestlayout = () => {
   const user = useSelector((state)=>state.auth.login.token);
-  // const role = useSelector((state)=>state.user.profile.role.roleName);
+  const role = useSelector((state)=>state.user.profile.role.roleName);
   return (
     <>
       <div
@@ -71,11 +71,11 @@ const Guestlayout = () => {
                             All Courses
                           </Link>
                         </li>
-                        <li>
+                        {role === 'User' && <li>
                           <a className="nav-link" href="course3.html">
-                            Favorite Course
+                            Your Courses
                           </a>
-                        </li>
+                        </li>}
                       </ul>
                     </li>
                     <li>
@@ -129,17 +129,25 @@ const Guestlayout = () => {
                 {user ? (
                   <>
                     <div className="call_to_action">
-                    <div id="main-menu" style={{display:'inline-block'}}>
+                    <div id="main-menu" style={{display:'inline-block',color:'white' }}>
                       <ul>
                         <li>
                           <Link to="userInfo" className="btn_two" style={{padding:'9px 30px'}}>
                             <i className="fa-solid fa-user"></i>
                           </Link>
                           <ul>
-                            <li><a className="nav-link" href="team-details.html">
+                          {role === 'User' && <li><a className="nav-link" href="team-details.html">
                                 Your Information
                               </a>
-                            </li>
+                            </li>}
+                            {role === 'Teacher' && <li><a className="nav-link" href="team-details.html">
+                                Manage Courses
+                              </a>
+                            </li>}
+                            {role === 'Admin' && <li><a className="nav-link" href="team-details.html">
+                                Dashboard
+                              </a>
+                            </li>}
                           </ul>
                         </li>
                       </ul>

@@ -21,6 +21,7 @@ import Checkout from "./components/Checkout";
 import Team_detail from "./components/Team_detail";
 
 function App() {
+  const role = useSelector((state) => state.user.profile.role.roleName);
   return (
     <Router>
       <Routes>
@@ -29,33 +30,50 @@ function App() {
           <Route path="image" element={<Image />} />
           <Route path="faq" element={<Faq />} />
           <Route path="intructors" element={<Team />} />
-          <Route path="intructor_detail" element={<Team_detail/>}/>
-          <Route path="contact" element={<Contact />}/>
+          <Route path="intructor_detail" element={<Team_detail />} />
+          <Route path="contact" element={<Contact />} />
           <Route path="login" element={<Login />} />
           <Route path="sign_up" element={<SignUp />} />
           <Route path="all_course" element={<AllCourse />} />
           <Route path="single_course" element={<SingleCourse />} />
-          <Route path="cart" element={<Cart/>}/>
-          <Route path="check_out" element={<Checkout/>}/>
+          <Route path="cart" element={<Cart />} />
+          <Route path="check_out" element={<Checkout />} />
           <Route path="event" element={<Event />} />
           <Route path="single_event" element={<SingleEvent />} />
           <Route path="blog" element={<Blog />} />
           <Route path="single_blog" element={<SingleBlog />} />
-          
         </Route>
-
-        <Route path="/user" element={<Guestlayout />}>
-          <Route path="info" index element={<Home />} />
-          <Route path="image" element={<Image />} />
-        </Route>
-
-        <Route path="/admin" element={<Guestlayout/>}>
-          <Route path="dashboard" index />
-        </Route>
-        <Route path="/teacher" element={<Guestlayout/>}>
-          <Route path="dashboard" index />
-        </Route>
-        <Route path="*" element={<Error404/>} />
+        {userRole === 'User' && (
+          <Route path="/user" element={<Guestlayout />}>
+            <Route path="info" index element={<Home />} />
+            <Route path="faq" element={<Faq />} />
+            <Route path="intructors" element={<Team />} />
+            <Route path="intructor_detail" element={<Team_detail />} />
+            <Route path="contact" element={<Contact />} />
+            <Route path="login" element={<Login />} />
+            <Route path="sign_up" element={<SignUp />} />
+            <Route path="all_course" element={<AllCourse />} />
+            <Route path="single_course" element={<SingleCourse />} />
+            <Route path="cart" element={<Cart />} />
+            <Route path="check_out" element={<Checkout />} />
+            <Route path="event" element={<Event />} />
+            <Route path="single_event" element={<SingleEvent />} />
+            <Route path="blog" element={<Blog />} />
+            <Route path="single_blog" element={<SingleBlog />} />
+            <Route path="image" element={<Image />} />
+          </Route>
+        )}
+        {userRole === 'Teacher' && (
+          <Route path="/teacher" element={<Guestlayout />}>
+            <Route path="dashboard" index />
+          </Route>
+        )}
+        {userRole === 'Admin' && (
+          <Route path="/admin" element={<Guestlayout />}>
+            <Route path="dashboard" index />
+          </Route>
+        )}
+        <Route path="*" element={<Error404 />} />
       </Routes>
     </Router>
   );
