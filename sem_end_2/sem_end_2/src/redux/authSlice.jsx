@@ -1,5 +1,19 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+const initialState = {
+    login: {
+        token: null,
+        isFetching: false,
+        error: false,
+        errorMessage: "",
+    },
+    signup: {
+        isFetching: false,
+        error: false,
+        success: false,
+        errorMessage: "",
+    }
+};
 const authSlice = createSlice({
     name: "auth",
     initialState: {
@@ -49,6 +63,10 @@ const authSlice = createSlice({
             state.signup.success = false;
             state.login.errorMessage = action.payload || "Sign up failed";
         },
+        logout: () => {
+            return initialState; // Trả về initialState
+        },
+        
     }
 });
 
@@ -59,6 +77,7 @@ export const {
     signupStart,
     signupFailed,
     signupSuccess,
+    logout,
 } = authSlice.actions;
 
 export default authSlice.reducer;

@@ -19,8 +19,11 @@ const userSlice = createSlice({
             state.isLoading = false;
             state.error = 'Failed to fetch user profile';
         },
+        logoutUser:(state)=>{
+            state.profile=null;
+        }
     },
 });
 
-export const { getUserStart, getUserSuccess, getUserFailed } = userSlice.actions;
+export const { getUserStart, getUserSuccess, getUserFailed ,logoutUser} = userSlice.actions;
 export default userSlice.reducer;

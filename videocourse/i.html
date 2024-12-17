@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Quản Lý Khóa Học</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="navbar">
+        <a href="#phan-quyen">Phân Quyền Người Dùng</a>
+        <a href="#quan-ly-khoa-hoc">Quản Lý Khóa Học</a>
+    </div>
+
+    <div class="container">
+        <section id="phan-quyen">
+            <h2>Phân Quyền Người Dùng</h2>
+            <input type="text" id="search" placeholder="Tìm kiếm người dùng...">
+            <ul id="user-list">
+                <li>Người dùng 1 <button>Phân quyền</button></li>
+                <li>Người dùng 2 <button>Phân quyền</button></li>
+                <li>Người dùng 3 <button>Phân quyền</button></li>
+                <!-- Thêm người dùng khác ở đây -->
+            </ul>
+        </section>
+
+        <section id="quan-ly-khoa-hoc">
+            <h2>Quản Lý Khóa Học</h2>
+            <ul id="course-list">
+                <li>Khóa học 1</li>
+                <li>Khóa học 2</li>
+                <li>Khóa học 3</li>
+                <!-- Thêm khóa học khác ở đây -->
+            </ul>
+
+            <h3>Tạo Khóa Học Mới</h3>
+            <form id="create-course-form">
+                <input type="text" placeholder="Tên khóa học" required>
+                <textarea placeholder="Giới thiệu khóa học" required></textarea>
+                <input type="text" placeholder="Link ảnh" required>
+                <button type="button" id="add-lesson">+</button>
+                <div id="lessons-container"></div>
+                <button type="submit">Tạo Khóa Học</button>
+            </form>
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

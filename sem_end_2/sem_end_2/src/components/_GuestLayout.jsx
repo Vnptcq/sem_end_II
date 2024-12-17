@@ -1,10 +1,23 @@
 import { Outlet, Link } from "react-router-dom";
 import logo from "../assets/images/all-img/logo.png";
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../redux/authSlice";
+import { logoutUser } from "../redux/userSlide";
+import { cartLogout } from "../redux/cartSlide";
 const Guestlayout = () => {
   const user = useSelector((state)=>state.auth.login.token);
-  const role = useSelector((state)=>state.user.profile.role.roleName);
+  const role = useSelector((state)=>state.user?.profile?.role.roleName);
+  const dispatch = useDispatch();
+  const handleLogout = () => {
+    dispatch(logout());
+    dispatch(logoutUser());
+    dispatch(cartLogout());
+    // Nếu có, xóa token từ localStorage hoặc sessionStorage
+    localStorage.removeItem('jwt_token');
+    // Điều hướng về trang đăng nhập hoặc trang chủ nếu cần
+    // Ví dụ: history.push('/login'); (nếu sử dụng react-router)
+};
   return (
     <>
       <div
@@ -26,7 +39,7 @@ const Guestlayout = () => {
             <div className="col-lg-6 col-md-9 col-sm-8">
               <div className="header_right">
                 <nav id="main-menu" className="ms-auto">
-                  <ul>
+                  <ul style={{paddingLeft: '0',margin: '9px'}}>
                     <li>
                       <Link to="/" className="nav-link">
                         Home
@@ -40,22 +53,6 @@ const Guestlayout = () => {
                       >
                         Instructor
                       </Link>
-                      <ul>
-                        <li>
-                          <Link
-                            to="intructors"
-                            className="nav-link"
-                            href="team.html"
-                          >
-                            Instructor
-                          </Link>
-                        </li>
-                        <li>
-                          <a className="nav-link" href="team-details.html">
-                            Instructor Details
-                          </a>
-                        </li>
-                      </ul>
                     </li>
                     <li>
                       <Link
@@ -63,20 +60,17 @@ const Guestlayout = () => {
                         className="nav-link"
                         href="allcourse.html"
                       >
-                        Courses <span className="ti-angle-down"></span>
+                        Courses 
                       </Link>
-                      <ul>
-                        <li>
-                          <Link to="all_course" className="nav-link">
-                            All Courses
-                          </Link>
-                        </li>
-                        {role === 'User' && <li>
+                      
+                        {role === 'User' && <ul>
+                          <li>
                           <a className="nav-link" href="course3.html">
                             Your Courses
                           </a>
-                        </li>}
-                      </ul>
+                        </li>
+                        </ul>}
+                      
                     </li>
                     <li>
                       <Link to="blog" className="nav-link" href="blog.html">
@@ -140,9 +134,9 @@ const Guestlayout = () => {
                                 Your Information
                               </a>
                             </li>}
-                            {role === 'Teacher' && <li><a className="nav-link" href="team-details.html">
+                            {role === 'Teacher' && <li><Link className="nav-link" to='/manage/manage_course'>
                                 Manage Courses
-                              </a>
+                              </Link>
                             </li>}
                             {role === 'Admin' && <li><a className="nav-link" href="team-details.html">
                                 Dashboard
@@ -152,7 +146,7 @@ const Guestlayout = () => {
                         </li>
                       </ul>
                     </div>
-                      <Link to="logout" className="btn_two" href="register.html">Log out</Link>
+                      <button to="logout" className="btn_two" href="register.html" onClick={ handleLogout } >Log out</button>
                     </div>
                   </>
                 ) : (
@@ -291,7 +285,7 @@ const Guestlayout = () => {
           <div className="row fc">
             <div className="col-lg-6 col-sm-6 col-xs-12">
               <div className="footer_copyright">
-                <p>&copy; 2023. All Rights Reserved.</p>
+                <p>&copy; 2024. All Rights Reserved.</p>
               </div>
             </div>
             <div className="col-lg-6 col-sm-6 col-xs-12">

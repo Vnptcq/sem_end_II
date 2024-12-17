@@ -14,6 +14,10 @@ public class CartController {
     @Autowired
     private CartService cartService;
 
+    @GetMapping("/cartCount")
+    public int cartCount(){
+        return cartService.cartCount();
+    }
     @GetMapping("/cartList")
     public Cart cartListById() {
         return cartService.findAll();

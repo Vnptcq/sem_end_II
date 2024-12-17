@@ -41,6 +41,10 @@ public class CartService {
         }
     }
 
+    public int cartCount(){
+        return cartRepository.countCartByUserEmail(getCurrentUserEmail());
+    }
+
     public String addCourseToCart(AddCoursesToCartRequest request){
 
         Cart cart = cartRepository.findByUserEmail(getCurrentUserEmail());

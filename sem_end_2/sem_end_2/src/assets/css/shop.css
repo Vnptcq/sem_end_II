@@ -3823,9 +3823,9 @@
 
 .shop.checkout .order-details {
 	margin-top: 30px;
-	background: #fff;
+	background: #ededed;
 	padding: 15px 0 30px 0;
-	border: 1px solid #eee;
+	border: 1px solid #39a9d2;
 }
 
 .shop.checkout .single-widget {

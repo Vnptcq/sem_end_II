@@ -546,7 +546,7 @@ p.section-title-white {
 }
 
 .btn_two:hover {
-  color: #fff;
+  color: #fff !important;
   border: 1px solid #39a9d2;
   background: #39a9d2;
 }

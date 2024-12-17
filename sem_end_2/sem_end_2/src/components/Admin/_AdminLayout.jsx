@@ -1,8 +1,8 @@
 
 import { Outlet, Link } from 'react-router-dom';
-import logo from'../assets/images/all-img/logo.png';
+import logo from'/src/assets/images/all-img/logo.png';
 
-const Userlayout =()=>{
+const AdminLayout =()=>{
     return (
         <>
         	{/* <!-- START LOGO WITH CONTACT --> */}
@@ -218,4 +218,4 @@ const Userlayout =()=>{
     )
 }
 
-export default Userlayout;
+export default AdminLayout;

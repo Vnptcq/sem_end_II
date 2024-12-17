@@ -29,10 +29,10 @@ import ct6 from "../assets/images/icon/ct6.svg";
 import hai from "../assets/images/blog/2.png";
 import ba from "../assets/images/blog/3.png";
 import { getUser } from "../redux/apiRequest";
+import axios from "axios";
 const Home = () => {
   const dispatch = useDispatch();
     const TOKEN = useSelector((state)=>state.auth.login.token); // Get the token
-
     const fetchUser = () => {
         if (TOKEN) {
             getUser(TOKEN, dispatch); // Call getUser with the token
@@ -42,7 +42,18 @@ const Home = () => {
   };
   useEffect(()=>{
     fetchUser();
+    window.scrollTo(0, 0);
   },[])
+  const[courses,setCourses]=useState([]);
+	
+	const loadCourses = async ()=>{
+		const result = await axios.get("http://localhost:8080/api/courses?size=12&page=0");
+		console.log(result.data);
+		setCourses(result.data.content);
+	};
+	useEffect(()=>{
+		loadCourses();
+	},[])
   const user = useSelector((state) => state.user.profile);
   return (
     <>
@@ -240,7 +251,7 @@ const Home = () => {
         </div>
       </section>
 
-      <section id="counts" className="counts section-padding">
+      {/* <section id="counts" className="counts section-padding">
         <div className="container" data-aos="fade-up">
           <div className="section-title">
             <h2>Some Fun Fact</h2>
@@ -314,9 +325,9 @@ const Home = () => {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
-      <div className="partner-logo section-padding">
+      {/* <div className="partner-logo section-padding">
         <div className="container">
           <div className="row">
             <div className="col-lg-12 text-center">
@@ -500,7 +511,7 @@ const Home = () => {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       <div className="best-cpurse section-padding">
         <div className="container">
@@ -753,7 +764,7 @@ const Home = () => {
         </div>
       </div>
 
-      <section className="course_promo section-padding">
+      {/* <section className="course_promo section-padding">
         <div className="container">
           <div className="row">
             <div
@@ -812,7 +823,7 @@ const Home = () => {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       <section className="newsletter_area section-padding">
         <div className="container">

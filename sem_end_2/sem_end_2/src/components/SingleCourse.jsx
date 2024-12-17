@@ -1,7 +1,47 @@
 import instructor from '../assets/images/all-img/ins-details.png'
 import course from '../assets/images/all-img/client04.png'
 import img1 from '../assets/images/all-img/rc-1.png'
-const SingleCourse=()=>{
+import { Link, useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+	const SingleCourse=()=>{
+	const { courseId } = useParams(); // Get the course ID from the URL
+    const [course, setCourse] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+	const TOKEN = useSelector((state)=>state.auth.login.token); 
+	const dispatch = useDispatch();
+    useEffect(() => {
+        const fetchCourseData = async () => {
+            try {
+                const response = await fetch(`http://localhost:8080/api/courses/${courseId}`);
+				
+                if (!response.ok) {
+                    throw new Error('Failed to fetch course details');
+                }
+				
+                const data = await response.json();
+                setCourse(data);
+				console.log(data.lessons);
+            } catch (err) {
+                setError(err.message);
+            } finally {
+				
+                setLoading(false);
+            }
+        };
+
+        fetchCourseData();
+    }, [courseId]);
+
+	
+    if (loading) {
+        return <div>Loading...</div>;
+    }
+
+    if (error) {
+        return <div>Error: {error}</div>;
+    }
     return(
         <>
         <section className="section-top">
@@ -26,21 +66,14 @@ const SingleCourse=()=>{
 			<div className="row">
 				<div className="col-lg-8 col-sm-8 col-xs-12">
 					<div className="single_event_single">
-						<img alt="" className="img-fluid" src={img1} />
+						<img alt="" className="img-fluid" src={course.img} />
 						<div className="single_event_text_single">
-							<h4>Professional Ceramic Moulding for Beginners</h4>
+							<h4>{course.title}</h4>
 							<span><i className="fa fa-calendar"></i>10 Oct 2023</span>
 							<span><i className="fa fa-clock-o"></i>7 days</span>
 							<span><i className="fa fa-table"></i><strong>30 Seats Available</strong></span>
-							<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
-								has been the industry's standard dummy text ever since the 1500s, when an unknown
-								printer took a galley of type and scrambled it to make a type specimen book. It has
-								survived not only five centuries, but also the leap into electronic typesetting,
-								remaining essentially unchanged.</p>
-							<p>It has survived not only five centuries, but also the leap into electronic typesetting,
-								remaining essentially unchanged. It was popularised in the 1960s with the release of
-								Letraset sheets containing Lorem Ipsum passages, and more recently with desktop
-								publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+							<p>{course.description}</p>
+							<p></p>
 						</div>
 					</div>
 					<div className="course-details-content section-bg">
@@ -259,10 +292,11 @@ const SingleCourse=()=>{
 						</ul>
 					</div>
 					<div className="event_info_price">
-						<h4>Price: 60$</h4>
+						<h4>Price: {course.price}$</h4>
 					</div>
 					<div className="event_info_register">
-						<a className="btn_one" href="#">Register Today</a>
+						<button className="btn_one" href="#">Add to cart</button>
+						<Link className="btn_one" to={`/video_course/${course.courseId}`}>Enrollment now</Link>
 					</div>
 					<div className="related_course">
 						<h3>Related Course</h3>

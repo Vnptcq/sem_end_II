@@ -1,16 +1,44 @@
+import { useLocation } from "react-router-dom";
 import "../assets/css/shop.css";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { getCart } from "../redux/apiRequest";
+
 const CheckoutIn = () => {
+	const dispatch = useDispatch();
+    const TOKEN = useSelector(state => state.auth.login.token);
+    const initialCartItems = useSelector(state => state.cart.items?.courses || []);
+    const isLoading = useSelector(state => state.cart.isLoading);
+    const error = useSelector(state => state.cart.error);
+    const [cartItems, setCartItems] = useState(initialCartItems);
+    const [loadingId, setLoadingId] = useState(null);
+
+	 useEffect(() => {
+			if (TOKEN) {
+				getCart(TOKEN, dispatch);
+			}
+		}, [TOKEN, dispatch]);
+	
+		// Update local state when Redux state changes
+		useEffect(() => {
+			setCartItems(initialCartItems);
+		}, [initialCartItems]);
+	
+		const calculateTotal = (items) => {
+			return items.reduce((total, item) => total + item.price, 0);
+		};
+		 const totalAmount = calculateTotal(cartItems); 	
     return(
         <>
         {/* Start Checkout */}
       <section className="shop checkout section">
         <div className="container">
-          <div className="row">
-            <div className="col-lg-8 col-12">
+          <div className="row" style={{display: 'flex',justifyContent: 'center',alignItems: 'center',height: '100vh'}}>
+            {/* <div className="col-lg-8 col-12">
               <div className="checkout-form">
                 <h2>Make Your Checkout Here</h2>
                 <p>Please register in order to checkout more quickly</p>
-                {/* Form */}
+                {{/* Form 
                 <form className="form" method="post" action="#">
                   <div className="row">
                     <div className="col-lg-6 col-md-6 col-12">
@@ -299,7 +327,7 @@ const CheckoutIn = () => {
                           <option>Los Angeles</option>
                           <option>Chicago</option>
 
-                          {/* Add more options */}
+                          {/* Add more options *
                         </select>
                       </div>
                     </div>
@@ -327,7 +355,7 @@ const CheckoutIn = () => {
                         <select name="company_name" id="company">
                           <option value="company" selected="selected">Microsoft</option>
                           <option>Apple</option>
-                          {/* Add more options */}
+                          {/* Add more options *
                         </select>
                       </div>
                     </div>
@@ -339,20 +367,20 @@ const CheckoutIn = () => {
                     </div>
                   </div>
                 </form>
-                {/*/ End Form */}
+                {/* End Form 
               </div>
-            </div>
+            </div> */}
 
-            <div className="col-lg-4 col-12">
+            <div className="col-lg-4 col-12" style={{display: 'flex',justifyContent: 'center',alignItems: 'center',height: '100vh'}}>
               <div className="order-details">
                 {/* Order Widget */}
                 <div className="single-widget">
                   <h2>CART TOTALS</h2>
                   <div className="content">
                     <ul>
-                      <li>Sub Total<span>$330.00</span></li>
-                      <li>(+) Shipping<span>$10.00</span></li>
-                      <li className="last">Total<span>$340.00</span></li>
+                      <li>Sub Total<span>${totalAmount.toFixed(2)}</span></li>
+                      <li>(+) Tax<span>$0</span></li>
+                      <li className="last">Total<span>${totalAmount.toFixed(2)}</span></li>
                     </ul>
                   </div>
                 </div>
@@ -372,14 +400,14 @@ const CheckoutIn = () => {
                 {/* Payment Method Widget */}
                 <div className="single-widget payement">
                   <div className="content">
-                    <img src="assets/img/payment-method.html" className="img-fluid" alt="#" />
+                    <img src={'https://i.pinimg.com/736x/d8/11/10/d81110f74b45542aa26eddc290592ed8.jpg'} className="img-fluid" alt="#" />
                   </div>
                 </div>
                 {/*/ End Payment Method Widget */}
                 {/* Button Widget */}
                 <div className="single-widget get-button">
                   <div className="content">
-                    <div className="button">
+                    <div className="button" style={{background:'none'}} >
                       <a href="#" className="btn">Proceed to checkout</a>
                     </div>
                   </div>
