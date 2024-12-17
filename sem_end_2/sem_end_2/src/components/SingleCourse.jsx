@@ -1,7 +1,7 @@
 import instructor from '../assets/images/all-img/ins-details.png'
 import course from '../assets/images/all-img/client04.png'
 import img1 from '../assets/images/all-img/rc-1.png'
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 	const SingleCourse=()=>{
@@ -10,7 +10,9 @@ import { useDispatch, useSelector } from 'react-redux';
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 	const TOKEN = useSelector((state)=>state.auth.login.token); 
+	const[token,setToken]=useState(null);
 	const dispatch = useDispatch();
+	const navigate = useNavigate();
     useEffect(() => {
         const fetchCourseData = async () => {
             try {
@@ -33,6 +35,42 @@ import { useDispatch, useSelector } from 'react-redux';
 
         fetchCourseData();
     }, [courseId]);
+
+	const addCourseToCart = async () => {
+		try {
+			setToken(TOKEN);
+			const response = await fetch('http://localhost:8080/cart/addCourse', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+					'Authorization': `Bearer ${TOKEN}`, // Nếu cần token
+				},
+				body: JSON.stringify({ courseIds: [courseId] }), // Gửi ID khóa học
+			});
+			console.log(TOKEN);
+			console.log(courseId);
+			if (!response.ok) {
+				const errorText = await response.text(); // Lấy phản hồi lỗi dưới dạng text
+			let errorMessage;
+
+			try {
+				// Nếu phản hồi có thể parse thành JSON, lấy thông điệp lỗi từ đó
+				const errorData = JSON.parse(errorText);
+				errorMessage = errorData.message || "Có lỗi xảy ra";
+			} catch {
+				// Nếu không parse được, sử dụng text gốc
+				errorMessage = errorText || "Có lỗi xảy ra";
+			}
+
+			throw new Error(`Failed to add course: ${errorMessage}`);
+			}
+	
+			// Xử lý dữ liệu phản hồi
+		} catch (error) {
+			console.error('Error adding course:', error);
+			
+		}
+	};
 
 	
     if (loading) {
@@ -295,7 +333,7 @@ import { useDispatch, useSelector } from 'react-redux';
 						<h4>Price: {course.price}$</h4>
 					</div>
 					<div className="event_info_register">
-						<button className="btn_one" href="#">Add to cart</button>
+						<button className="btn_one" onClick={addCourseToCart} >Add to cart</button>
 						<Link className="btn_one" to={`/video_course/${course.courseId}`}>Enrollment now</Link>
 					</div>
 					<div className="related_course">

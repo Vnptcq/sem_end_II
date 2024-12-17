@@ -9,6 +9,7 @@ const Guestlayout = () => {
   const user = useSelector((state)=>state.auth.login.token);
   const role = useSelector((state)=>state.user?.profile?.role.roleName);
   const dispatch = useDispatch();
+  const [cartCount,setCartCount]=useState(0);
   const handleLogout = () => {
     dispatch(logout());
     dispatch(logoutUser());
@@ -17,6 +18,18 @@ const Guestlayout = () => {
     localStorage.removeItem('jwt_token');
     // Điều hướng về trang đăng nhập hoặc trang chủ nếu cần
     // Ví dụ: history.push('/login'); (nếu sử dụng react-router)
+    const loadCartCount = async () => {
+      const result = await axios.get(
+        "http://localhost:8080/cart/cartCount"
+      );
+      console.log(result.data);
+      setCartCount(result.data);
+    };
+   
+    useEffect(() => {
+      loadCartCount();
+      loadCourses();
+    }, []);
 };
   return (
     <>
@@ -110,13 +123,13 @@ const Guestlayout = () => {
             {/* Cart and Login/Signup Section */}
             <div className="col-lg-4 col-md-3 col-sm-8">
               <div className="home_lc">
-                <a href="#" className="hlc">
+                {/* <a href="#" className="hlc">
                   <i className="ti-heart"></i>
                   <span className="gactive">0</span>
-                </a>
+                </a> */}
                 <Link to="cart" className="hlc">
                   <i className="ti-shopping-cart-full"></i>
-                  <span className="gactive">2</span>
+                  {/* <span className="gactive">2</span> */}
                 </Link>
               </div>
               <div className="call_to_action">
@@ -210,22 +223,19 @@ const Guestlayout = () => {
                 <h4>Courses</h4>
                 <ul>
                   <li>
-                    <a href="#">Creative Writing</a>
+                    <a href="#">Kids</a>
                   </li>
                   <li>
-                    <a href="#">Digital Marketing</a>
+                    <a href="#">Teenage</a>
                   </li>
                   <li>
-                    <a href="#">SEO Business</a>
+                    <a href="#">Adult</a>
                   </li>
                   <li>
-                    <a href="#">Social Marketing</a>
+                    <a href="#">IETLS</a>
                   </li>
                   <li>
-                    <a href="#">Graphic Design</a>
-                  </li>
-                  <li>
-                    <a href="#">Website Development</a>
+                    <a href="#">TOEIC</a>
                   </li>
                 </ul>
               </div>
@@ -234,25 +244,22 @@ const Guestlayout = () => {
             {/* Company Links Section */}
             <div className="col-lg-3 col-sm-6 col-xs-12">
               <div className="single_footer">
-                <h4>Company</h4>
+                <h4>Quick Link</h4>
                 <ul>
                   <li>
                     <a href="#">About us</a>
                   </li>
                   <li>
-                    <a href="#">Knowledge Base</a>
+                    <a href="#">QA's</a>
                   </li>
                   <li>
-                    <a href="#">Affiliate Program</a>
+                    <a href="#">Event</a>
                   </li>
                   <li>
-                    <a href="#">Community</a>
+                    <a href="#">Blog</a>
                   </li>
                   <li>
-                    <a href="#">Market API</a>
-                  </li>
-                  <li>
-                    <a href="#">Support team</a>
+                    <a href="#">Courses</a>
                   </li>
                 </ul>
               </div>
@@ -265,17 +272,17 @@ const Guestlayout = () => {
                 <div className="sf_contact">
                   <span className="ti-mobile"></span>
                   <h3>Phone number</h3>
-                  <p>+88 457 845 695</p>
+                  <p>088 457 845 695</p>
                 </div>
                 <div className="sf_contact">
                   <span className="ti-email"></span>
-                  <h3>Email Address</h3>
-                  <p>example@yourmail.com</p>
+                  <h3>Email</h3>
+                  <p>victory_center@email.com</p>
                 </div>
                 <div className="sf_contact">
                   <span className="ti-map"></span>
-                  <h3>Office Address</h3>
-                  <p>California, USA</p>
+                  <h3>Address</h3>
+                  <p>HaNoi</p>
                 </div>
               </div>
             </div>

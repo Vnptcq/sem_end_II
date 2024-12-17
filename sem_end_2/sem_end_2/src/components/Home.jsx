@@ -30,6 +30,7 @@ import hai from "../assets/images/blog/2.png";
 import ba from "../assets/images/blog/3.png";
 import { getUser } from "../redux/apiRequest";
 import axios from "axios";
+import { Link } from "react-router-dom";
 const Home = () => {
   const dispatch = useDispatch();
     const TOKEN = useSelector((state)=>state.auth.login.token); // Get the token
@@ -82,13 +83,13 @@ const Home = () => {
                     </p>
                   </div>
                   <div className="home_btn">
-                    <a href="#" className="cta">
+                    <Link to='/all_course' className="cta">
                       <span>Your courses</span>
                       <svg width="13px" height="10px" viewBox="0 0 13 10">
                         <path d="M1,5 L11,5"></path>
                         <polyline points="8 1 12 5 8 9"></polyline>
                       </svg>
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </>
@@ -97,21 +98,20 @@ const Home = () => {
                 <div className="col-lg-6 col-sm-6 col-xs-12">
                   <div className="home_content">
                     <h1>
-                      Better <span>Learning Future</span> Starts With Penn
+                      Better <span>Learning Future</span> Starts With Victory 
                     </h1>
                     <p>
-                      It is a long established fact that reader will be
-                      distracted readable content of a page when.
+                    Unlock your potential with our online English courses designed for learners of all ages. Whether you're a preschooler taking your first steps, a student aiming for top grades, or an adult looking to advance your career, we’ve got the perfect course for you.
                     </p>
                   </div>
                   <div className="home_btn">
-                    <a href="#" className="cta">
+                    <Link to='/all_course' className="cta">
                       <span>Explore Courses</span>
                       <svg width="13px" height="10px" viewBox="0 0 13 10">
                         <path d="M1,5 L11,5"></path>
                         <polyline points="8 1 12 5 8 9"></polyline>
                       </svg>
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </>
@@ -138,16 +138,14 @@ const Home = () => {
               <div className="single_tp">
                 <h3>Quality Education</h3>
                 <p>
-                  Lorem ipsum dolor sit amet, consectetur notted adipisicing
-                  elit sed do eiusmod tempor incididunt ut labore.
-                </p>
-                <a href="#" className="cta">
+                Our online English courses offer comprehensive lessons focused on all language skills, ensuring effective learning for every student.                </p>
+                <Link to='/blog' className="cta">
                   <span>Explore</span>
                   <svg width="13px" height="10px" viewBox="0 0 13 10">
                     <path d="M1,5 L11,5"></path>
                     <polyline points="8 1 12 5 8 9"></polyline>
                   </svg>
-                </a>
+                </Link>
               </div>
             </div>
             <div
@@ -159,16 +157,14 @@ const Home = () => {
               <div className="single_tp">
                 <h3>Experienced Teachers</h3>
                 <p>
-                  Lorem ipsum dolor sit amet, consectetur notted adipisicing
-                  elit sed do eiusmod tempor incididunt ut labore.
-                </p>
-                <a href="#" className="cta">
+                Learn from certified instructors with extensive experience who provide personalized feedback and engaging lessons tailored to your needs.                </p>
+                <Link to='/blog' className="cta">
                   <span>Explore</span>
                   <svg width="13px" height="10px" viewBox="0 0 13 10">
                     <path d="M1,5 L11,5"></path>
                     <polyline points="8 1 12 5 8 9"></polyline>
                   </svg>
-                </a>
+                </Link>
               </div>
             </div>
             <div
@@ -178,11 +174,9 @@ const Home = () => {
               data-wow-offset="0"
             >
               <div className="single_tp">
-                <h3>Delicious Food</h3>
+                <h3>Support 24/7</h3>
                 <p>
-                  Lorem ipsum dolor sit amet, consectetur notted adipisicing
-                  elit sed do eiusmod tempor incididunt ut labore.
-                </p>
+                Enjoy 24/7 support from our dedicated team, ready to assist you with questions, assignments, and guidance whenever you need it.                </p>
                 <a href="#" className="cta">
                   <span>Explore</span>
                   <svg width="13px" height="10px" viewBox="0 0 13 10">

@@ -85,9 +85,8 @@ if (error) {
                     {lessons[currentLessonIndex].title}
                     </div>
                     <div className="video-container">
-                    <iframe id="main-video" src="https://www.youtube.com/embed/YOmC5Tyk-nU?si=nEogF06rSahooDba&rel=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                        {/* <iframe id="main-video" src={lessons[currentLessonIndex].courseVideos[0].videoUrl} frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen
-                        /> */}
+                        <iframe id="main-video" src={lessons[currentLessonIndex].courseVideos[0].videoUrl} frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen
+                        />
                     </div>
                     <p className="course-description">
                         {lessons[currentLessonIndex].content}

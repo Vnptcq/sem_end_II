@@ -1,11 +1,13 @@
-import { useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import "../assets/css/shop.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { getCart } from "../redux/apiRequest";
+import { cartLogout } from "../redux/cartSlide";
 
 const CheckoutIn = () => {
 	const dispatch = useDispatch();
+	const navigate = useNavigate();
     const TOKEN = useSelector(state => state.auth.login.token);
     const initialCartItems = useSelector(state => state.cart.items?.courses || []);
     const isLoading = useSelector(state => state.cart.isLoading);
@@ -27,7 +29,14 @@ const CheckoutIn = () => {
 		const calculateTotal = (items) => {
 			return items.reduce((total, item) => total + item.price, 0);
 		};
+
 		 const totalAmount = calculateTotal(cartItems); 	
+
+		 const Alert = ()=>{
+			
+			alert("Bạn đã mua hàng thành công");
+			dispatch(cartLogout());
+		 };
     return(
         <>
         {/* Start Checkout */}
@@ -407,8 +416,8 @@ const CheckoutIn = () => {
                 {/* Button Widget */}
                 <div className="single-widget get-button">
                   <div className="content">
-                    <div className="button" style={{background:'none'}} >
-                      <a href="#" className="btn">Proceed to checkout</a>
+                    <div onClick={Alert} className="button" style={{background:'none'}} >
+                      <Link to='/all_course' className="btn">Proceed to checkout</Link>
                     </div>
                   </div>
                 </div>
