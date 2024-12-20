@@ -1,12 +1,13 @@
 
 import { Outlet, Link } from 'react-router-dom';
 import logo from'/src/assets/images/all-img/logo.png';
-import { useDispatch } from 'react-redux';
+import { useDispatch,useSelector } from 'react-redux';
 import { logout } from '../../redux/authSlice';
 import { logoutUser } from '../../redux/userSlide';
 import { cartLogout } from '../../redux/cartSlide';
 
 const AdminLayout =()=>{
+	const role = useSelector((state)=>state.user?.profile?.role.roleName);
 	const dispatch = useDispatch();
 	const handleLogout = () => {
 		dispatch(logout());
@@ -38,7 +39,7 @@ const AdminLayout =()=>{
 								<li><a className="nav-link" href="index_2.html">Course</a>
 
 								</li>
-								
+								{role === "Admin" && 
 								<li><a className="nav-link" href="allcourse.html">User <span
 											className="ti-angle-down"></span></a>
 									<ul>
@@ -49,6 +50,8 @@ const AdminLayout =()=>{
 										<li><a className="nav-link" href="single_course.html">Course details</a></li>
 									</ul>
 								</li>
+								}
+								
 								
 							</ul>
 						</nav>

@@ -2,7 +2,7 @@ import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Image from "./components/Image";
 import Guestlayout from "./components/_GuestLayout";
-import Home from "./components/Home";
+import Home from "./components/Home/Home";
 import Userlayout from "./components/Admin/_AdminLayout";
 import Faq from "./components/Faq";
 import Team from "./components/Team";
