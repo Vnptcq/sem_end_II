@@ -28,7 +28,7 @@ import ct5 from "../assets/images/icon/ct5.svg";
 import ct6 from "../assets/images/icon/ct6.svg";
 import hai from "../assets/images/blog/2.png";
 import ba from "../assets/images/blog/3.png";
-import { getUser } from "../redux/apiRequest";
+import { getUser } from "../../redux/apiRequest";
 import axios from "axios";
 import { Link } from "react-router-dom";
 const Home = () => {
@@ -818,103 +818,6 @@ const Home = () => {
           </div>
         </div>
       </section> */}
-
-      <section className="newsletter_area section-padding">
-        <div className="container">
-          <div className="row text-center">
-            <div className="col-lg-6 offset-lg-3 col-sm-12 col-xs-12">
-              <div className="subs_form">
-                <h3>Subscripbe to our newsletter, We don't make any spam.</h3>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elitsed
-                  eiusmod tempor enim minim
-                </p>
-                <form action="#" className="home_subs">
-                  <input
-                    type="text"
-                    className="subscribe__input"
-                    placeholder="Enter your Email Address"
-                  />
-                  <button type="button" className="subscribe__btn">
-                    <i className="fa fa-paper-plane-o"></i>
-                  </button>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="topic_content_area section-padding">
-        <div className="container">
-          <div className="section-title">
-            <h2>Start Learning </h2>
-            <p>
-              Popular{" "}
-              <span>
-                <u>Topics To Learn</u>
-              </span>{" "}
-              From Today.
-            </p>
-          </div>
-          <div className="row">
-            <div className="col-lg-4 col-sm-6 col-xs-12">
-              <div className="single_tca">
-                <img src={ct1} alt="" />
-                <h2>
-                  <a href="#">UI/UX Design</a>
-                </h2>
-                <span>71 Courses</span>
-              </div>
-            </div>
-            <div className="col-lg-4 col-sm-6 col-xs-12">
-              <div className="single_tca">
-                <img src={ct2} alt="" />
-                <h2>
-                  <a href="#">Digital Program</a>
-                </h2>
-                <span>59 Courses</span>
-              </div>
-            </div>
-            <div className="col-lg-4 col-sm-6 col-xs-12">
-              <div className="single_tca">
-                <img src={ct3} alt="" />
-                <h2>
-                  <a href="#">Finance</a>
-                </h2>
-                <span>68 Courses</span>
-              </div>
-            </div>
-            <div className="col-lg-4 col-sm-6 col-xs-12">
-              <div className="single_tca">
-                <img src={ct4} alt="" />
-                <h2>
-                  <a href="#">Modern Physics</a>
-                </h2>
-                <span>83 Courses</span>
-              </div>
-            </div>
-            <div className="col-lg-4 col-sm-6 col-xs-12">
-              <div className="single_tca">
-                <img src={ct5} alt="" />
-                <h2>
-                  <a href="#">Music Production</a>
-                </h2>
-                <span>37 Courses</span>
-              </div>
-            </div>
-            <div className="col-lg-4 col-sm-6 col-xs-12">
-              <div className="single_tca">
-                <img src={ct6} alt="" />
-                <h2>
-                  <a href="#">Data Science</a>
-                </h2>
-                <span>51 Courses</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
       <section className="our-event section-padding">
         <div className="container">
