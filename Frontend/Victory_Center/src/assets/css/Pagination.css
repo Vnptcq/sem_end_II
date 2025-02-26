@@ -1,0 +1,45 @@
+.pagination {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+  
+  .nav-btn,
+  .page-btn {
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 0.5rem 0.75rem;
+    font-size: 14px;
+    color: #333;
+    background-color: white;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+  }
+  
+  .nav-btn.disabled,
+  .nav-btn.disabled:hover,
+  .page-btn.disabled {
+    color: #aaa;
+    cursor: not-allowed;
+    background-color: #f2f2f2;
+  }
+  
+  .page-btn.active {
+    color: #fff;
+    background-color: #6200ee;
+    border-color: #6200ee;
+  }
+  
+  .nav-btn:hover,
+  .page-btn:hover:not(.active):not(.disabled) {
+    background-color: #f7f7f7;
+  }
+  
+  .dots {
+    font-size: 14px;
+    color: #aaa;
+    padding: 0.5rem;
+  }
+  
